@@ -31,13 +31,7 @@ export function ProjectCard({
 }: ProjectCardProps) {
   const isEven = index % 2 === 0;
   
-  // Default fallback images per project index if not supplied
-  const defaultImages = [
-    ["/richat-1.jpg", "/richat-2.jpg", "/richat-3.jpg"],
-    ["/linkoo-1.jpg", "/linkoo-2.jpg", "/linkoo-3.jpg"],
-    ["/draken-1.jpg", "/draken-2.jpg", "/draken-3.jpg"],
-  ];
-  const projectImages = images && images.length > 0 ? images : (defaultImages[index] || ["/draken-1.jpg"]);
+  const projectImages = images && images.length > 0 ? images : [];
 
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
@@ -61,6 +55,10 @@ export function ProjectCard({
     e.stopPropagation();
     setActiveImageIndex((prev) => (prev + 1) % projectImages.length);
   };
+
+  const displayUrl = demo 
+    ? demo.replace(/^https?:\/\//, '').replace(/\/$/, '') 
+    : `https://${title.toLowerCase().replace(/\s+/g, '')}.dev`;
 
   return (
     <>
@@ -95,18 +93,20 @@ export function ProjectCard({
                   rel="noopener noreferrer"
                   className="px-3 py-1 rounded-md bg-white/[0.04] border border-white/10 text-[11px] font-mono text-zinc-400 hover:text-sky-400 max-w-[200px] sm:max-w-[260px] truncate text-center transition-colors"
                 >
-                  https://{title.toLowerCase().replace(/\s+/g, '')}.dev
+                  {displayUrl}
                 </a>
 
                 <div className="flex items-center gap-2">
-                  <button
-                    onClick={() => setLightboxOpen(true)}
-                    className="text-zinc-500 hover:text-white p-1 rounded transition-colors"
-                    title="Expand View"
-                    aria-label="Expand View"
-                  >
-                    <Maximize2 size={12} />
-                  </button>
+                  {projectImages.length > 0 && (
+                    <button
+                      onClick={() => setLightboxOpen(true)}
+                      className="text-zinc-500 hover:text-white p-1 rounded transition-colors"
+                      title="Expand View"
+                      aria-label="Expand View"
+                    >
+                      <Maximize2 size={12} />
+                    </button>
+                  )}
                   <span className="text-[10px] font-mono font-bold text-zinc-500 uppercase">
                     0{index + 1}
                   </span>
@@ -118,30 +118,40 @@ export function ProjectCard({
                 {/* Subtle Ambient Radial Highlight */}
                 <div className="absolute -top-12 -right-12 w-48 h-48 bg-sky-500/10 rounded-full blur-3xl pointer-events-none" />
 
-                {/* Sliding Viewport */}
-                <div className="w-full h-full relative overflow-hidden flex items-center">
-                  <motion.div
-                    className="flex w-full h-full cursor-grab active:cursor-grabbing"
-                    animate={{ x: `-${activeImageIndex * 100}%` }}
-                    transition={{ type: "spring", stiffness: 260, damping: 28 }}
-                  >
-                    {projectImages.map((src, i) => (
-                      <div
-                        key={i}
-                        className="w-full h-full flex-shrink-0 relative overflow-hidden flex items-center justify-center bg-zinc-950/80"
-                        onClick={() => setLightboxOpen(true)}
-                      >
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img
-                          src={src}
-                          alt={`${title} screenshot ${i + 1}`}
-                          className="w-full h-full object-cover object-top transition-transform duration-700 hover:scale-105"
-                          loading="lazy"
-                        />
-                      </div>
-                    ))}
-                  </motion.div>
-                </div>
+                {/* Sliding Viewport or Placeholder */}
+                {projectImages.length > 0 ? (
+                  <div className="w-full h-full relative overflow-hidden flex items-center">
+                    <motion.div
+                      className="flex w-full h-full cursor-grab active:cursor-grabbing"
+                      animate={{ x: `-${activeImageIndex * 100}%` }}
+                      transition={{ type: "spring", stiffness: 260, damping: 28 }}
+                    >
+                      {projectImages.map((src, i) => (
+                        <div
+                          key={i}
+                          className="w-full h-full flex-shrink-0 relative overflow-hidden flex items-center justify-center bg-zinc-950/80"
+                          onClick={() => setLightboxOpen(true)}
+                        >
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img
+                            src={src}
+                            alt={`${title} screenshot ${i + 1}`}
+                            className="w-full h-full object-cover object-top transition-transform duration-700 hover:scale-105"
+                            loading="lazy"
+                          />
+                        </div>
+                      ))}
+                    </motion.div>
+                  </div>
+                ) : (
+                  <div className="w-full h-full flex flex-col items-center justify-center p-6 text-center bg-[radial-gradient(ellipse_at_center,rgba(56,189,248,0.06)_0%,transparent_70%)]">
+                    <div className="w-12 h-12 rounded-2xl bg-white/[0.04] border border-white/10 flex items-center justify-center text-sky-400 mb-3 shadow-inner">
+                      <ExternalLink size={20} className="opacity-80" />
+                    </div>
+                    <p className="text-xs font-mono font-medium text-zinc-400 mb-1">{title}</p>
+                    <p className="text-[11px] text-zinc-600 font-mono">Screenshots updating</p>
+                  </div>
+                )}
 
                 {/* Floating Chevron Navigation Controls */}
                 {projectImages.length > 1 && (

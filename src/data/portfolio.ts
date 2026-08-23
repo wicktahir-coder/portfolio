@@ -36,8 +36,8 @@ export const portfolioData = {
       techStack: ["React", "Node.js", "Express", "MongoDB", "Socket.io", "Redis", "Cloudinary"],
       outcome: "Sub-10ms cache retrieval & stable WebSocket connections.",
       github: "https://github.com/asardev7/Chat-app",
-      demo: "",
-      images: ["/richat-1.jpg", "/richat-2.jpg", "/richat-3.jpg"],
+      demo: "https://ri-chat.up.railway.app/",
+      images: ["/richat-1.png"],
     },
     {
       title: "Linkoo",
@@ -46,8 +46,8 @@ export const portfolioData = {
       techStack: ["React", "Node.js", "Express", "MongoDB", "Recharts", "Tailwind CSS"],
       outcome: "Processing redirects across 100+ active short links.",
       github: "https://github.com/asardev7/url-shortener",
-      demo: "",
-      images: ["/linkoo-1.jpg", "/linkoo-2.jpg", "/linkoo-3.jpg"],
+      demo: "https://url-short-ov0k.onrender.com/",
+      images: ["/linkoo-1.png"],
     },
     {
       title: "Draken",
@@ -56,8 +56,8 @@ export const portfolioData = {
       techStack: ["React", "Tailwind CSS", "MongoDB", "Node.js", "Express"],
       outcome: "Zero-loss cart state persistence.",
       github: "https://github.com/asardev7/E-commerce",
-      demo: "",
-      images: ["/draken-1.jpg", "/draken-2.jpg", "/draken-3.jpg"],
+      demo: "https://e-commerce-6ah7.onrender.com/",
+      images: ["/draken-1.png"],
     }
   ],
   education: [
