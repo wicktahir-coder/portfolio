@@ -4,11 +4,11 @@ export const portfolioData = {
     email: "asarudeen7ind@gmail.com",
     linkedin: "https://linkedin.com/in/asarudeen7",
     github: "https://github.com/asardev7",
-    role: "Full Stack Developer",
-    heroHeadline: "Full-stack developer building scalable web systems.",
+    role: "Mern Stack Developer",
+    heroHeadline: "MERN Stack developer building scalable web systems.",
     heroSubtitle: "Engineering high-throughput backend APIs, real-time WebSocket pipelines, and reactive client architectures with zero-loss state persistence.",
     aboutHeading: "Engineering scalable, distributed web systems & microservices.",
-    aboutBio: "I am a full-stack engineer focused on end-to-end web architecture, distributed systems, and low-latency API design. I specialize in the MERN stack—authoring modular Node.js/Express services, indexing MongoDB schemas, and developing reactive frontends. My core focus centers on WebSocket event pipelines via Socket.io, in-memory cache invalidation with Redis, and containerized cloud deployments.",
+    aboutBio: "I am a MERN Stack engineer focused on end-to-end web architecture, distributed systems, and low-latency API design. I specialize in the MERN stack—authoring modular Node.js/Express services, indexing MongoDB schemas, and developing reactive frontends. My core focus centers on WebSocket event pipelines via Socket.io, in-memory cache invalidation with Redis, and containerized cloud deployments.",
   },
   skills: [
     {
