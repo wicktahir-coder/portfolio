@@ -179,13 +179,13 @@ export default function Hero() {
       <div className="max-w-7xl mx-auto w-full px-6 md:px-12 relative z-10 flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
         
         {/* Left Visual - Profile Picture with cool Gradient Border & Glow */}
-        <div className="hero-visual w-full lg:w-[42%] relative flex justify-center items-center opacity-0 shrink-0">
+        <div className="hero-visual w-full lg:w-[42%] relative flex justify-center items-center opacity-0 shrink-0 mb-6 lg:mb-0">
           {/* Huge background text behind the picture */}
-          <div className="absolute -z-10 text-[6.5rem] sm:text-[8rem] lg:text-[9.5rem] font-black tracking-tighter text-[#141418]/60 select-none pointer-events-none hero-bg-text font-sans uppercase leading-none select-none text-center transform -translate-y-8">
+          <div className="absolute -z-10 text-[4.5rem] sm:text-[7rem] md:text-[8.5rem] lg:text-[9.5rem] font-black tracking-tighter text-[#141418]/60 select-none pointer-events-none hero-bg-text font-sans uppercase leading-none text-center transform -translate-y-6 sm:-translate-y-8">
             Asarudeen
           </div>
 
-          <div className="relative group doppelrand-shell !p-2.5 !rounded-3xl w-88 sm:w-[420px] max-w-full shadow-2xl overflow-hidden aspect-[3/4]">
+          <div className="relative group doppelrand-shell !p-2.5 !rounded-3xl w-[280px] sm:w-[360px] lg:w-[400px] max-w-[90vw] shadow-2xl overflow-hidden aspect-[3/4]">
             {/* Subtle Gradient Backlight */}
             <div className="absolute inset-0 bg-gradient-to-tr from-sky-500/25 via-indigo-600/10 to-transparent z-0 opacity-70 group-hover:scale-105 transition-transform duration-500" />
             
