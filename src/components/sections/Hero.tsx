@@ -4,13 +4,12 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useState, useEffect, useRef } from "react";
+import Image from "next/image";
 import { portfolioData } from "@/data/portfolio";
 import { ArrowUpRight, FileText } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa6";
 import { MagneticButton } from "@/components/ui/magnetic-button";
 import { GSAPMarquee } from "@/components/ui/gsap-marquee";
-import { ShaderBackground } from "@/components/ui/blue-noise";
-import { KeyedImage } from "@/components/ui/KeyedImage";
 import { ResumeModal } from "@/components/ui/resume-modal";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
@@ -178,30 +177,44 @@ export default function Hero() {
 
       <div className="max-w-7xl mx-auto w-full px-6 md:px-12 relative z-10 flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
         
-        {/* Left Visual - Profile Picture with cool Gradient Border & Glow */}
+        {/* Left Visual - Profile Picture with Luminous Blue Border Effects on Hover */}
         <div className="hero-visual w-full lg:w-[42%] relative flex justify-center items-center opacity-0 shrink-0 mb-6 lg:mb-0">
           {/* Huge background text behind the picture */}
           <div className="absolute -z-10 text-[4.5rem] sm:text-[7rem] md:text-[8.5rem] lg:text-[9.5rem] font-black tracking-tighter text-[#141418]/60 select-none pointer-events-none hero-bg-text font-sans uppercase leading-none text-center transform -translate-y-6 sm:-translate-y-8">
             Asarudeen
           </div>
 
-          <div className="relative group doppelrand-shell !p-2.5 !rounded-3xl w-[280px] sm:w-[360px] lg:w-[400px] max-w-[90vw] shadow-2xl overflow-hidden aspect-[3/4]">
-            {/* Subtle Gradient Backlight */}
-            <div className="absolute inset-0 bg-gradient-to-tr from-sky-500/25 via-indigo-600/10 to-transparent z-0 opacity-70 group-hover:scale-105 transition-transform duration-500" />
-            
-            <div className="doppelrand-core !rounded-[calc(1.5rem)] overflow-hidden h-full w-full relative z-10 bg-black">
-              {/* WebGL Shader Background */}
-              <ShaderBackground className="absolute inset-0 z-0 opacity-90" />
-              
-              {/* Keyed Image (removes black background, keeps subject opaque) */}
-              <KeyedImage 
-                src="/profile.jpg" 
-                alt="Asarudeen S"
-                threshold={35}
-                className="w-full h-full object-cover grayscale contrast-[1.15] hover:grayscale-0 transition-all duration-700 ease-out relative z-10"
-              />
-              {/* Fade bottom to match background #050507 - 10% fade cover */}
-              <div className="absolute inset-x-0 bottom-0 h-[10%] bg-gradient-to-t from-[#050507] via-[#050507] to-transparent pointer-events-none z-20" />
+          <div className="relative group w-[280px] sm:w-[360px] lg:w-[400px] max-w-[90vw] aspect-[3/4]">
+            {/* Diffuse Outer Blue Glow Flare on Hover */}
+            <div className="absolute -inset-2 bg-gradient-to-tr from-sky-500/30 via-cyan-400/20 to-blue-600/30 rounded-[2.5rem] blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none -z-10" />
+
+            {/* Doppelrand Outer Shell with Blue Neon Border Glow */}
+            <div className="doppelrand-shell !p-2.5 !rounded-3xl w-full h-full shadow-2xl overflow-hidden group-hover:border-sky-400/60 group-hover:shadow-[0_0_35px_rgba(56,189,248,0.3),0_0_70px_rgba(14,165,233,0.15)] transition-all duration-500 relative">
+              {/* Dynamic Blue Border Edge Gradient Accent */}
+              <div className="absolute inset-0 bg-gradient-to-tr from-sky-500/0 via-sky-400/0 to-cyan-300/0 group-hover:from-sky-500/25 group-hover:via-sky-400/15 group-hover:to-cyan-300/25 opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none z-0" />
+
+              <div className="doppelrand-core !rounded-[calc(1.5rem)] overflow-hidden h-full w-full relative z-10 bg-[#08080c] border border-white/5 group-hover:border-sky-400/40 group-hover:shadow-[inset_0_0_24px_rgba(56,189,248,0.15)] transition-all duration-500">
+                {/* High-Performance Next.js Optimized Image */}
+                <div className="relative w-full h-full overflow-hidden">
+                  <Image
+                    src="/asar-new.jpg"
+                    alt="Asarudeen S"
+                    fill
+                    priority
+                    sizes="(max-width: 640px) 280px, (max-width: 1024px) 360px, 400px"
+                    className="object-cover object-center contrast-[1.05] brightness-[0.99] saturate-[1.06] group-hover:scale-[1.04] transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)]"
+                  />
+
+                  {/* Subtle Cinematic Vignette Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20 pointer-events-none z-10" />
+
+                  {/* Smooth Glass Sheen Shine Sweep on Hover */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-sky-200/[0.15] to-transparent -translate-x-[200%] group-hover:translate-x-[200%] transition-transform duration-1000 ease-out pointer-events-none z-20" />
+
+                  {/* Seamless Bottom Card Gradient Blend */}
+                  <div className="absolute inset-x-0 bottom-0 h-[14%] bg-gradient-to-t from-[#050507] via-[#050507]/80 to-transparent pointer-events-none z-20" />
+                </div>
+              </div>
             </div>
           </div>
         </div>
