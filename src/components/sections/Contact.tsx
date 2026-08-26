@@ -10,10 +10,9 @@ import {
   ArrowUpRight,
   Copy,
   Check,
-  Send,
 } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa6";
-import { MagneticButton } from "@/components/ui/magnetic-button";
+import ContactForm from "@/components/ui/ContactForm";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -24,43 +23,39 @@ export default function Contact() {
   const handleCopyEmail = () => {
     navigator.clipboard.writeText(portfolioData.personal.email);
     setCopied(true);
-    setTimeout(() => setCopied(false), 2500);
+    setTimeout(() => setCopied(false), 2000);
   };
 
   useGSAP(
     () => {
-      // Main contact card reveal
       gsap.fromTo(
-        ".contact-card",
-        { opacity: 0, y: 45, scale: 0.98 },
+        ".contact-left",
+        { opacity: 0, y: 20 },
         {
           opacity: 1,
           y: 0,
-          scale: 1,
-          duration: 0.85,
-          ease: "power3.out",
+          duration: 0.7,
+          ease: "power2.out",
           scrollTrigger: {
-            trigger: ".contact-card",
-            start: "top 85%",
+            trigger: sectionRef.current,
+            start: "top 80%",
             once: true,
           },
         }
       );
 
-      // Stagger inner elements
       gsap.fromTo(
-        ".contact-inner > *",
+        ".contact-right",
         { opacity: 0, y: 20 },
         {
           opacity: 1,
           y: 0,
-          duration: 0.6,
-          ease: "power3.out",
-          stagger: 0.1,
-          delay: 0.25,
+          duration: 0.7,
+          delay: 0.1,
+          ease: "power2.out",
           scrollTrigger: {
-            trigger: ".contact-card",
-            start: "top 85%",
+            trigger: sectionRef.current,
+            start: "top 80%",
             once: true,
           },
         }
@@ -73,101 +68,87 @@ export default function Contact() {
     <section
       id="contact"
       ref={sectionRef}
-      className="py-32 relative bg-[#050507] overflow-hidden"
+      className="py-24 md:py-32 relative bg-[#050507] border-t border-white/5"
     >
-      {/* Ambient Lighting Background */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[45rem] h-[30rem] bg-sky-500/10 rounded-full blur-[160px] pointer-events-none" />
+      <div className="max-w-6xl mx-auto px-6 md:px-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+          
+          {/* Left Column: Direct Info */}
+          <div className="contact-left lg:col-span-5 space-y-8">
+            <div>
+              <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight mb-4">
+                Get in touch
+              </h2>
+              <p className="text-sm sm:text-base text-zinc-400 leading-relaxed max-w-md">
+                Have a question, a project proposal, or an engineering role? Send a message through the form or reach out directly.
+              </p>
+            </div>
 
-      <div className="max-w-7xl mx-auto w-full px-6 md:px-12 relative z-10">
-        <div className="contact-card max-w-4xl mx-auto opacity-0">
-          <div className="doppelrand-shell">
-            <div className="doppelrand-core p-8 sm:p-16 text-center relative overflow-hidden">
-              <div className="contact-inner space-y-0">
-                {/* Header Tag */}
-                <div className="doppelrand-shell !p-1 !rounded-full inline-flex mb-6">
-                  <div className="doppelrand-core px-3.5 py-1.5 flex items-center gap-2 text-xs font-mono font-semibold text-sky-400">
-                    <Send size={12} className="text-sky-400" />
-                    Contact
-                  </div>
-                </div>
-
-                <h2 className="text-4xl sm:text-6xl font-black text-white tracking-tight mb-6 leading-[1.1] block">
-                  Get in <br />
-                  <span className="bg-gradient-to-r from-white via-sky-300 to-indigo-400 bg-clip-text text-transparent">
-                    touch.
-                  </span>
-                </h2>
-
-                <p className="text-base md:text-lg text-zinc-400 mb-10 max-w-xl mx-auto leading-relaxed font-normal block">
-                  If you have a full-time role, a freelance project, or want to connect—send me an email.
+            <div className="space-y-4 pt-2">
+              <div>
+                <p className="text-xs text-zinc-500 uppercase tracking-wider font-medium mb-1.5">
+                  Email
                 </p>
-
-                {/* Island Action Buttons */}
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12 max-w-lg mx-auto">
-                  <MagneticButton
-                    as="a"
+                <div className="flex items-center gap-3">
+                  <a
                     href={`mailto:${portfolioData.personal.email}`}
-                    strength={0.25}
-                    className="w-full sm:w-auto flex-1 group inline-flex items-center justify-center bg-sky-500 hover:bg-sky-400 text-zinc-950 pl-6 pr-2 py-2 rounded-full font-bold text-sm shadow-xl transition-all cursor-pointer active:scale-[0.98]"
+                    className="text-sm font-medium text-white hover:text-sky-400 transition-colors"
                   >
-                    <Mail size={16} className="mr-2" />
-                    <span>Send Email</span>
-                    <span className="w-8 h-8 rounded-full bg-zinc-950 text-white flex items-center justify-center ml-3 group-hover:scale-105 group-hover:rotate-45 transition-transform duration-300">
-                      <ArrowUpRight size={15} />
-                    </span>
-                  </MagneticButton>
-
-                  <MagneticButton
-                    as="button"
+                    {portfolioData.personal.email}
+                  </a>
+                  <button
+                    type="button"
                     onClick={handleCopyEmail}
-                    strength={0.25}
-                    className="w-full sm:w-auto flex-1 flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-white/[0.04] text-white border border-white/10 hover:bg-white/[0.08] font-semibold text-sm transition-colors backdrop-blur-xl cursor-pointer active:scale-[0.98]"
+                    className="p-1.5 rounded-md hover:bg-zinc-800 text-zinc-400 hover:text-white transition-colors cursor-pointer"
+                    aria-label="Copy email address"
                   >
                     {copied ? (
-                      <>
-                        <Check size={16} className="text-emerald-400" />
-                        <span className="text-emerald-400 font-mono text-xs">Address Copied!</span>
-                      </>
+                      <Check size={14} className="text-emerald-400" />
                     ) : (
-                      <>
-                        <Copy size={16} />
-                        <span>Copy Email</span>
-                      </>
+                      <Copy size={14} />
                     )}
-                  </MagneticButton>
+                  </button>
                 </div>
+              </div>
 
-                {/* Details Bar - Socials Only */}
-                <div className="pt-8 border-t border-white/5 flex justify-center">
-                  <div className="flex items-center justify-center gap-6 p-4 px-8 rounded-2xl bg-white/[0.02] border border-white/5 max-w-md w-full">
-                    <MagneticButton
-                      as="a"
-                      href={portfolioData.personal.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      strength={0.35}
-                      className="flex items-center gap-2 text-xs font-semibold text-zinc-400 hover:text-white transition-colors cursor-pointer"
-                    >
-                      <FaGithub size={16} />
-                      GitHub Profile
-                    </MagneticButton>
-                    <span className="text-zinc-700">|</span>
-                    <MagneticButton
-                      as="a"
-                      href={portfolioData.personal.linkedin}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      strength={0.35}
-                      className="flex items-center gap-2 text-xs font-semibold text-zinc-400 hover:text-sky-400 transition-colors cursor-pointer"
-                    >
-                      <FaLinkedin size={16} />
-                      LinkedIn Profile
-                    </MagneticButton>
-                  </div>
+              <div>
+                <p className="text-xs text-zinc-500 uppercase tracking-wider font-medium mb-2">
+                  Profiles
+                </p>
+                <div className="flex items-center gap-3">
+                  <a
+                    href={portfolioData.personal.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/[0.03] border border-white/10 hover:border-white/25 hover:bg-[#24292e] text-zinc-300 hover:text-white text-xs font-medium transition-all duration-200"
+                  >
+                    <FaGithub size={14} />
+                    <span>GitHub</span>
+                    <ArrowUpRight size={12} className="text-zinc-500 group-hover:text-white" />
+                  </a>
+
+                  <a
+                    href={portfolioData.personal.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/[0.03] border border-white/10 hover:border-[#0a66c2]/60 hover:bg-[#0a66c2] text-zinc-300 hover:text-white text-xs font-medium transition-all duration-200"
+                  >
+                    <FaLinkedin size={14} className="text-[#0a66c2] group-hover:text-white" />
+                    <span>LinkedIn</span>
+                    <ArrowUpRight size={12} className="text-zinc-500" />
+                  </a>
                 </div>
               </div>
             </div>
           </div>
+
+          {/* Right Column: Clean Form Container */}
+          <div className="contact-right lg:col-span-7">
+            <div className="p-6 sm:p-8 rounded-2xl bg-zinc-950/70 border border-white/10 backdrop-blur-md shadow-2xl">
+              <ContactForm accessKey="1bf1cbe1-f836-47ba-b5a4-ba86f07b52bc" />
+            </div>
+          </div>
+
         </div>
       </div>
     </section>

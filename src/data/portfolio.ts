@@ -1,7 +1,7 @@
 export const portfolioData = {
   personal: {
     name: "Asarudeen S",
-    email: "asarudeen2005a@gmail.com",
+    email: "asarudeen7ind@gmail.com",
     linkedin: "https://linkedin.com/in/asarudeen7",
     github: "https://github.com/asardev7",
     role: "Full Stack Developer",
@@ -25,7 +25,7 @@ export const portfolioData = {
     },
     {
       category: "Infrastructure",
-      technologies: ["Git", "GitHub", "Render", "Railway", "Vercel", "Cloudinary"],
+      technologies: ["Git", "GitHub", "Render", "Railway", "Vercel", "Netlify", "Brevo", "Cloudinary"],
     },
   ],
   projects: [
@@ -65,13 +65,13 @@ export const portfolioData = {
       degree: "Bachelor of Computer Applications",
       institution: "The American College",
       period: "2023 – 2026",
-      score: "8.7 CGPA",
+      score: "8.8 CGPA",
     },
     {
       degree: "Higher Secondary — Computer Science",
       institution: "Sethupathi Higher Secondary School",
       period: "2016 – 2023",
-      score: "73%",
+      score: "76%",
     },
   ],
   certifications: [

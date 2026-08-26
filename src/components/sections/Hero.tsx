@@ -3,16 +3,19 @@
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { portfolioData } from "@/data/portfolio";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, FileText } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa6";
 import { MagneticButton } from "@/components/ui/magnetic-button";
 import { GSAPMarquee } from "@/components/ui/gsap-marquee";
 import { ShaderBackground } from "@/components/ui/blue-noise";
 import { KeyedImage } from "@/components/ui/KeyedImage";
+import { ResumeModal } from "@/components/ui/resume-modal";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
+
+const TYPED_WORDS = ["ASARUDEEN S", "MERN STACK DEV"];
 
 const MARQUEE_ITEMS = [
   "MERN Stack",
@@ -39,6 +42,41 @@ const MARQUEE_ITEMS = [
 
 export default function Hero() {
   const containerRef = useRef<HTMLElement>(null);
+  const [isResumeOpen, setIsResumeOpen] = useState(false);
+  const [typedText, setTypedText] = useState("");
+  const [wordIndex, setWordIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  // Smooth typewriter loop cycling between ASARUDEEN S and MERN STACK DEV
+  useEffect(() => {
+    const currentWord = TYPED_WORDS[wordIndex];
+    let timeout: NodeJS.Timeout;
+
+    if (!isDeleting) {
+      if (typedText.length < currentWord.length) {
+        timeout = setTimeout(() => {
+          setTypedText(currentWord.slice(0, typedText.length + 1));
+        }, 90);
+      } else {
+        // Pause when word is completely typed
+        timeout = setTimeout(() => {
+          setIsDeleting(true);
+        }, 2200);
+      }
+    } else {
+      if (typedText.length > 0) {
+        timeout = setTimeout(() => {
+          setTypedText(currentWord.slice(0, typedText.length - 1));
+        }, 45);
+      } else {
+        // Switch to next word
+        setIsDeleting(false);
+        setWordIndex((prev) => (prev + 1) % TYPED_WORDS.length);
+      }
+    }
+
+    return () => clearTimeout(timeout);
+  }, [typedText, isDeleting, wordIndex]);
 
   useGSAP(
     () => {
@@ -62,30 +100,11 @@ export default function Hero() {
           { opacity: 1, y: 0, duration: 0.5 },
           "-=0.7"
         )
-        // GSAP Character Typing Animation
-        .fromTo(
-          ".name-char",
-          { opacity: 0 },
-          { 
-            opacity: 1, 
-            stagger: 0.08, 
-            duration: 0.02, 
-            ease: "none" 
-          }
-        )
-        // Cursor blink loop
-        .to(".typing-cursor", {
-          opacity: 0,
-          duration: 0.6,
-          repeat: -1,
-          yoyo: true,
-          ease: "power1.inOut"
-        }, "-=0.2")
         .fromTo(
           ".hero-headline",
           { opacity: 0, y: 25 },
           { opacity: 1, y: 0, duration: 0.8 },
-          "-=0.2"
+          "-=0.3"
         )
         .fromTo(
           ".hero-subtitle",
@@ -189,25 +208,17 @@ export default function Hero() {
 
         {/* Right Content */}
         <div className="w-full lg:w-[60%] pt-4 lg:pt-0 z-20">
-          {/* Doppelrand Top Status Pill with GSAP Typing Name */}
+          {/* Doppelrand Top Status Pill with Continuous Typing Loop */}
           <div className="hero-pill mb-6 inline-flex opacity-0">
             <div className="doppelrand-shell !p-1 !rounded-full">
-              <div className="doppelrand-core px-5 py-2 flex items-center gap-2 text-sm font-mono font-medium text-zinc-300">
-                <span className="relative flex h-2 w-2 mr-1">
+              <div className="doppelrand-core px-5 sm:px-6 py-2.5 sm:py-3 flex items-center gap-2.5 font-mono text-zinc-300">
+                <span className="relative flex h-2.5 w-2.5 shrink-0 mr-0.5">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-sky-500"></span>
+                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-sky-500"></span>
                 </span>
-                <span className="text-white font-black tracking-widest uppercase flex items-center text-sm sm:text-base">
-                  {"ASARUDEEN S".split("").map((char, i) => (
-                    <span key={i} className="name-char opacity-0 inline-block text-sky-400">
-                      {char === " " ? "\u00A0" : char}
-                    </span>
-                  ))}
-                  <span className="typing-cursor inline-block w-1 h-4 bg-sky-400 ml-0.5" />
-                </span>
-                <span className="text-zinc-600 ml-1">•</span>
-                <span className="text-zinc-400">
-                  {portfolioData.personal.role}
+                <span className="text-sky-400 font-bold tracking-wider font-mono flex items-center text-sm sm:text-base md:text-lg whitespace-nowrap">
+                  <span>{typedText || "\u00A0"}</span>
+                  <span className="inline-block w-[2.5px] h-4 sm:h-5 bg-sky-400 ml-1.5 animate-[pulse_0.8s_ease-in-out_infinite]" />
                 </span>
               </div>
             </div>
@@ -240,7 +251,20 @@ export default function Hero() {
               </span>
             </MagneticButton>
 
+            <MagneticButton
+              as="button"
+              onClick={() => setIsResumeOpen(true)}
+              strength={0.25}
+              className="group relative inline-flex items-center overflow-hidden border border-sky-500/30 hover:border-sky-400 bg-white/[0.04] text-white hover:text-zinc-950 pl-6 pr-2 py-2 rounded-full font-bold text-sm shadow-xl transition-all duration-300 cursor-pointer active:scale-[0.98] backdrop-blur-xl"
+            >
+              {/* Smooth Fill-Up Background Animation */}
+              <span className="absolute inset-0 bg-gradient-to-r from-sky-400 to-sky-500 translate-y-full group-hover:translate-y-0 transition-transform duration-350 ease-[cubic-bezier(0.23,1,0.32,1)] rounded-full -z-10" />
 
+              <span className="relative z-10 transition-colors duration-300">View Resume</span>
+              <span className="relative z-10 w-8 h-8 rounded-full bg-white/10 group-hover:bg-zinc-950 text-sky-400 group-hover:text-white flex items-center justify-center ml-3 group-hover:scale-105 transition-all duration-300">
+                <FileText size={14} className="transition-colors duration-300" />
+              </span>
+            </MagneticButton>
 
             <div className="flex items-center gap-2 sm:ml-2">
               <MagneticButton
@@ -249,7 +273,8 @@ export default function Hero() {
                 target="_blank"
                 rel="noopener noreferrer"
                 strength={0.35}
-                className="p-3.5 rounded-full bg-white/[0.04] border border-white/10 text-zinc-400 hover:text-white hover:bg-white/[0.08] transition-colors backdrop-blur-2xl cursor-pointer"
+                className="p-3.5 rounded-full bg-white/[0.04] border border-white/10 text-zinc-400 hover:text-white hover:bg-[#24292e] hover:border-white/30 hover:shadow-[0_0_16px_rgba(255,255,255,0.12)] transition-all duration-300 backdrop-blur-2xl cursor-pointer"
+                aria-label="GitHub Profile"
               >
                 <FaGithub size={18} />
               </MagneticButton>
@@ -259,7 +284,8 @@ export default function Hero() {
                 target="_blank"
                 rel="noopener noreferrer"
                 strength={0.35}
-                className="p-3.5 rounded-full bg-white/[0.04] border border-white/10 text-zinc-400 hover:text-sky-400 hover:bg-white/[0.08] transition-colors backdrop-blur-2xl cursor-pointer"
+                className="p-3.5 rounded-full bg-white/[0.04] border border-white/10 text-zinc-400 hover:text-white hover:bg-[#0a66c2] hover:border-[#0a66c2] hover:shadow-[0_0_20px_rgba(10,102,194,0.4)] transition-all duration-300 backdrop-blur-2xl cursor-pointer"
+                aria-label="LinkedIn Profile"
               >
                 <FaLinkedin size={18} />
               </MagneticButton>
@@ -267,6 +293,14 @@ export default function Hero() {
           </div>
         </div>
       </div>
+
+      {/* In-app PDF Resume Modal */}
+      <ResumeModal
+        isOpen={isResumeOpen}
+        onClose={() => setIsResumeOpen(false)}
+        pdfUrl="/asaru (1).pdf"
+        title="Asarudeen S — Resume.pdf"
+      />
 
       {/* Marquee Ticker Strip */}
       <div className="hero-marquee w-full mt-16 pb-8 opacity-0 relative z-10">

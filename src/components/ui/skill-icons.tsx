@@ -20,7 +20,7 @@ import {
   SiFramer,
   SiExpress,
   SiRender,
-  SiHtml5
+  SiNetlify,
 } from "react-icons/si";
 
 // Official Zustand Bear / Store Icon
@@ -118,6 +118,24 @@ export function JwtIcon({ size = 24, ...props }: any) {
       <path
         fill="#fb015b"
         d="m77.545 164.847l-40.57 55.975l31.069 22.596l40.827-55.976v-32.61zm100.91-73.18l40.57-55.976l-31.069-22.596l-40.57 55.976v32.61z"
+      />
+    </svg>
+  );
+}
+
+// Official Brevo (formerly Sendinblue) Brand Icon
+export function BrevoIcon({ size = 24, color = "#008060", ...props }: any) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      {...props}
+    >
+      <path
+        fill={color}
+        d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0M7.2 4.8h5.747c2.34 0 3.895 1.406 3.895 3.516c0 1.022-.348 1.862-1.09 2.588C17.189 11.812 18 13.22 18 14.785c0 2.86-2.64 5.016-6.164 5.016H7.199v-15zm2.085 1.952v5.537h.07c.233-.432.858-.796 2.249-1.226c2.039-.659 3.037-1.52 3.037-2.655c0-.998-.766-1.656-1.924-1.656zm4.87 5.266c-.766.385-1.67.748-2.76 1.11c-1.229.387-2.11 1.386-2.11 2.407v2.315h2.365c2.387 0 4.149-1.34 4.149-3.155c0-1.067-.625-2.087-1.645-2.677z"
       />
     </svg>
   );
@@ -235,10 +253,19 @@ export const skillIconMap: Record<string, SkillMeta> = {
     color: "#FFFFFF",
     bgColor: "rgba(255, 255, 255, 0.08)"
   },
+  "Netlify": {
+    icon: SiNetlify,
+    color: "#00C7B7",
+    bgColor: "rgba(0, 199, 183, 0.08)"
+  },
+  "Brevo": {
+    icon: BrevoIcon,
+    color: "#008060",
+    bgColor: "rgba(0, 128, 96, 0.08)"
+  },
   "Cloudinary": {
     icon: SiCloudinary,
     color: "#3448C5",
     bgColor: "rgba(52, 72, 197, 0.08)"
   }
 };
-

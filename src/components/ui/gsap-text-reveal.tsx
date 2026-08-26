@@ -30,14 +30,32 @@ export function GSAPTextReveal({
       const el = containerRef.current;
       if (!el) return;
 
-      // Split into words by wrapping each in a span
+      // Safely construct DOM elements without innerHTML injection (prevents XSS)
+      el.textContent = "";
       const words = text.split(" ");
-      el.innerHTML = words
-        .map(
-          (word) =>
-            `<span style="display:inline-block;overflow:hidden;vertical-align:bottom;"><span class="gsap-word" style="display:inline-block;">${word}</span></span>`
-        )
-        .join('<span style="display:inline-block;width:0.3em;"> </span>');
+
+      words.forEach((word, index) => {
+        const outerSpan = document.createElement("span");
+        outerSpan.style.display = "inline-block";
+        outerSpan.style.overflow = "hidden";
+        outerSpan.style.verticalAlign = "bottom";
+
+        const innerSpan = document.createElement("span");
+        innerSpan.className = "gsap-word";
+        innerSpan.style.display = "inline-block";
+        innerSpan.textContent = word;
+
+        outerSpan.appendChild(innerSpan);
+        el.appendChild(outerSpan);
+
+        if (index < words.length - 1) {
+          const spaceSpan = document.createElement("span");
+          spaceSpan.style.display = "inline-block";
+          spaceSpan.style.width = "0.3em";
+          spaceSpan.textContent = " ";
+          el.appendChild(spaceSpan);
+        }
+      });
 
       const wordEls = el.querySelectorAll(".gsap-word");
 

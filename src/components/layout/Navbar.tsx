@@ -102,7 +102,7 @@ export default function Navbar() {
             href={portfolioData.personal.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden sm:flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-zinc-800/80 hover:bg-zinc-700 text-zinc-200 hover:text-white text-xs font-bold transition-all border border-zinc-700/60 active:scale-95"
+            className="hidden sm:flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-zinc-800/80 hover:bg-[#24292e] text-zinc-300 hover:text-white text-xs font-bold transition-all border border-zinc-700/60 hover:border-white/25 active:scale-95 shadow-sm"
           >
             <FaGithub size={13} />
             <span className="hidden md:inline">GitHub</span>
@@ -144,7 +144,7 @@ export default function Navbar() {
               href={portfolioData.personal.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-2 px-4 py-2.5 rounded-xl bg-blue-600 text-white font-semibold text-sm flex items-center justify-center gap-2"
+              className="mt-2 px-4 py-2.5 rounded-xl bg-[#24292e] hover:bg-[#1b1f23] text-white font-semibold text-sm flex items-center justify-center gap-2 border border-white/10"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               <FaGithub size={16} />

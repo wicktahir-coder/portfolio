@@ -23,7 +23,7 @@ export function Footer() {
             href={portfolioData.personal.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-zinc-400 hover:text-white transition-all p-2.5 rounded-xl bg-white/[0.03] border border-white/10 hover:border-white/20 active:scale-[0.98]"
+            className="text-zinc-400 hover:text-white transition-all p-2.5 rounded-xl bg-white/[0.03] border border-white/10 hover:bg-[#24292e] hover:border-white/25 hover:shadow-[0_0_12px_rgba(255,255,255,0.1)] active:scale-[0.98]"
             aria-label="GitHub"
           >
             <FaGithub size={18} />
@@ -32,7 +32,7 @@ export function Footer() {
             href={portfolioData.personal.linkedin}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-zinc-400 hover:text-sky-400 transition-all p-2.5 rounded-xl bg-white/[0.03] border border-white/10 hover:border-white/20 active:scale-[0.98]"
+            className="text-zinc-400 hover:text-white transition-all p-2.5 rounded-xl bg-white/[0.03] border border-white/10 hover:bg-[#0a66c2] hover:border-[#0a66c2] hover:shadow-[0_0_14px_rgba(10,102,194,0.35)] active:scale-[0.98]"
             aria-label="LinkedIn"
           >
             <FaLinkedin size={18} />

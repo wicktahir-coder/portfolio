@@ -6,41 +6,55 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { portfolioData } from "@/data/portfolio";
 import { SkillPill } from "@/components/ui/SkillCard";
-import { Monitor, Server, Database, Code2, Wrench } from "lucide-react";
-import type { ReactNode } from "react";
+import {
+  Code2,
+  BrainCircuit,
+  MessagesSquare,
+  Users2,
+  Compass,
+  Zap,
+} from "lucide-react";
+import { motion } from "framer-motion";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
-const categoryMeta: Record<
-  string,
-  { icon: ReactNode; accent: string; label: string }
-> = {
-  Frontend: {
-    icon: <Monitor size={18} />,
-    accent: "#38bdf8",
-    label: "User Interfaces",
+const SOFT_SKILLS = [
+  {
+    name: "Problem Solving",
+    icon: BrainCircuit,
+    color: "#38bdf8",
+    bgColor: "rgba(56, 189, 248, 0.1)",
+    animationClass: "group-hover:scale-115 group-hover:rotate-6",
   },
-  Backend: {
-    icon: <Server size={18} />,
-    accent: "#10b981",
-    label: "Web Servers & APIs",
+  {
+    name: "Communication",
+    icon: MessagesSquare,
+    color: "#10b981",
+    bgColor: "rgba(16, 185, 129, 0.1)",
+    animationClass: "group-hover:scale-115 group-hover:-translate-y-1",
   },
-  Database: {
-    icon: <Database size={18} />,
-    accent: "#f59e0b",
-    label: "Data & Caching",
+  {
+    name: "Teamwork",
+    icon: Users2,
+    color: "#818cf8",
+    bgColor: "rgba(129, 140, 248, 0.1)",
+    animationClass: "group-hover:scale-115 group-hover:rotate-3",
   },
-  Languages: {
-    icon: <Code2 size={18} />,
-    accent: "#6366f1",
-    label: "Programming Languages",
+  {
+    name: "Adaptability",
+    icon: Compass,
+    color: "#f59e0b",
+    bgColor: "rgba(245, 158, 11, 0.1)",
+    animationClass: "group-hover:rotate-180 transition-transform duration-700 ease-out",
   },
-  "Tools & Deployment": {
-    icon: <Wrench size={18} />,
-    accent: "#c084fc",
-    label: "Hosting & Tools",
+  {
+    name: "Quick Learner",
+    icon: Zap,
+    color: "#ec4899",
+    bgColor: "rgba(236, 72, 153, 0.1)",
+    animationClass: "group-hover:scale-125 group-hover:-rotate-12",
   },
-};
+];
 
 export default function Skills() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -103,6 +117,42 @@ export default function Skills() {
         start: "top 90%",
         once: true,
       });
+
+      // Soft skills section reveal
+      gsap.fromTo(
+        ".soft-skills-header",
+        { opacity: 0, y: 20 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: ".soft-skills-section",
+            start: "top 85%",
+            once: true,
+          },
+        }
+      );
+
+      // Soft skills cards stagger reveal
+      gsap.fromTo(
+        ".soft-skill-card",
+        { opacity: 0, y: 25, scale: 0.94 },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.55,
+          ease: "back.out(1.5)",
+          stagger: 0.07,
+          scrollTrigger: {
+            trigger: ".soft-skills-grid",
+            start: "top 88%",
+            once: true,
+          },
+        }
+      );
     },
     { scope: sectionRef }
   );
@@ -144,7 +194,7 @@ export default function Skills() {
 
             return (
               <div key={group.category} className="space-y-6">
-                {/* Category Header - Clean Editorial Hierarchy */}
+                {/* Category Header */}
                 <div className="skills-category-header opacity-0 flex items-center justify-between border-b border-white/5 pb-4">
                   <div className="flex items-center gap-3">
                     <span className="text-xs font-mono font-bold text-sky-400/80 px-2.5 py-1 rounded-md bg-sky-500/10 border border-sky-500/20">
@@ -177,6 +227,71 @@ export default function Skills() {
             );
           })}
         </div>
+
+        {/* =========================================================================
+           SOFT SKILLS SUB-SECTION (WITH ANIMATED ICONS)
+           ========================================================================= */}
+        <div className="soft-skills-section mt-24 pt-14 border-t border-white/5 space-y-6">
+          {/* Soft Skills Header */}
+          <div className="soft-skills-header opacity-0 flex items-center justify-between">
+            <h3 className="text-xl font-bold text-white tracking-tight">
+              Soft Skills
+            </h3>
+            <span className="text-xs font-mono text-zinc-400 bg-white/[0.03] px-3 py-1 rounded-full border border-white/5">
+              5 attributes
+            </span>
+          </div>
+
+          {/* Soft Skills Animated Grid */}
+          <div className="soft-skills-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3.5">
+            {SOFT_SKILLS.map((skill) => {
+              const Icon = skill.icon;
+              return (
+                <motion.div
+                  key={skill.name}
+                  whileHover={{ y: -4, scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  transition={{ type: "spring", stiffness: 350, damping: 25 }}
+                  className="soft-skill-card opacity-0 doppelrand-shell !p-1 group cursor-pointer h-full"
+                >
+                  <div className="doppelrand-core py-4 px-3.5 h-full flex items-center relative overflow-hidden bg-[#08080c] group-hover:border-white/20 transition-all duration-300">
+                    {/* Dynamic Ambient Background Glow */}
+                    <div
+                      className="absolute -top-10 -right-10 w-24 h-24 rounded-full opacity-0 group-hover:opacity-25 blur-2xl transition-opacity duration-500 pointer-events-none"
+                      style={{ backgroundColor: skill.color }}
+                    />
+
+                    {/* Animated Icon Box (Left Side) */}
+                    <div
+                      className="w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-300 shadow-lg relative z-10 shrink-0"
+                      style={{
+                        backgroundColor: skill.bgColor,
+                        boxShadow: `0 0 0 1px ${skill.color}25`,
+                      }}
+                    >
+                      <Icon
+                        size={19}
+                        className={`transition-all duration-300 ${skill.animationClass}`}
+                        style={{
+                          color: skill.color,
+                          filter: `drop-shadow(0 0 8px ${skill.color}80)`,
+                        }}
+                      />
+                    </div>
+
+                    {/* Skill Word (Centered inside remaining card width) */}
+                    <div className="flex-1 flex items-center justify-center text-center px-1">
+                      <span className="relative z-10 text-xs sm:text-sm font-bold text-zinc-200 group-hover:text-white transition-colors tracking-tight text-center leading-snug">
+                        {skill.name}
+                      </span>
+                    </div>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+
       </div>
     </section>
   );

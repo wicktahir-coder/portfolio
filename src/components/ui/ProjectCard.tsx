@@ -251,7 +251,7 @@ export function ProjectCard({
                 target="_blank"
                 rel="noopener noreferrer"
                 strength={0.2}
-                className="flex items-center gap-2.5 bg-white/[0.04] hover:bg-white/[0.08] text-white px-5 py-2.5 rounded-full border border-white/10 text-xs font-bold transition-all active:scale-[0.98] backdrop-blur-md cursor-pointer"
+                className="flex items-center gap-2.5 bg-white/[0.04] hover:bg-[#24292e] text-white px-5 py-2.5 rounded-full border border-white/10 hover:border-white/30 text-xs font-bold transition-all active:scale-[0.98] backdrop-blur-md cursor-pointer hover:shadow-[0_0_15px_rgba(255,255,255,0.1)]"
               >
                 <FaGithub size={15} />
                 <span>Source Code</span>
