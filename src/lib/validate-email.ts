@@ -125,6 +125,8 @@ const DUMMY_USERNAMES = new Set([
   "xyz",
 ]);
 
+import { portfolioData } from "@/data/portfolio";
+
 export interface EmailValidationResult {
   isValid: boolean;
   error?: string;
@@ -141,6 +143,15 @@ export function validateEmail(rawEmail: string): EmailValidationResult {
   }
 
   const email = rawEmail.trim().toLowerCase();
+
+  // Prevent entering the website owner's own email address
+  const ownerEmail = portfolioData.personal.email?.trim().toLowerCase();
+  if (ownerEmail && email === ownerEmail) {
+    return {
+      isValid: false,
+      error: "You cannot enter my email address. Please provide your own email so I can get back to you.",
+    };
+  }
 
   // Strict length limits (RFC 5321)
   if (email.length < 5) {
