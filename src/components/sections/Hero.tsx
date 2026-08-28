@@ -166,7 +166,7 @@ export default function Hero() {
   return (
     <section
       ref={containerRef}
-      className="relative min-h-[100dvh] flex flex-col justify-center pt-32 pb-0 overflow-hidden bg-[#050507]"
+      className="relative min-h-[100dvh] flex flex-col justify-center pt-24 sm:pt-32 pb-0 overflow-hidden bg-[#050507]"
     >
       {/* Ambient Radial Spotlight & Glows */}
       <div className="absolute top-1/4 left-1/3 w-[60rem] h-[35rem] bg-sky-500/5 rounded-full blur-[160px] pointer-events-none animate-pulse-slow" />
@@ -175,21 +175,21 @@ export default function Hero() {
       {/* Grid Pattern Overlay with Radial Mask */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_40%,#000_70%,transparent_100%)] opacity-60 pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto w-full px-6 md:px-12 relative z-10 flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+      <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 md:px-12 relative z-10 flex flex-col lg:flex-row items-center gap-8 sm:gap-12 lg:gap-16">
         
         {/* Left Visual - Profile Picture with Luminous Blue Border Effects on Hover */}
-        <div className="hero-visual w-full lg:w-[42%] relative flex justify-center items-center opacity-0 shrink-0 mb-6 lg:mb-0">
+        <div className="hero-visual w-full lg:w-[42%] relative flex justify-center items-center opacity-0 shrink-0 mb-2 sm:mb-6 lg:mb-0">
           {/* Huge background text behind the picture */}
-          <div className="absolute -z-10 text-[4.5rem] sm:text-[7rem] md:text-[8.5rem] lg:text-[9.5rem] font-black tracking-tighter text-[#141418]/60 select-none pointer-events-none hero-bg-text font-sans uppercase leading-none text-center transform -translate-y-6 sm:-translate-y-8">
+          <div className="absolute -z-10 text-[3.2rem] xs:text-[4.5rem] sm:text-[7rem] md:text-[8.5rem] lg:text-[9.5rem] font-black tracking-tighter text-[#141418]/60 select-none pointer-events-none hero-bg-text font-sans uppercase leading-none text-center transform -translate-y-4 sm:-translate-y-8 max-w-full overflow-hidden">
             Asarudeen
           </div>
 
-          <div className="relative group w-[280px] sm:w-[360px] lg:w-[400px] max-w-[90vw] aspect-[3/4]">
+          <div className="relative group w-[240px] xs:w-[270px] sm:w-[340px] lg:w-[400px] max-w-[85vw] aspect-[3/4]">
             {/* Diffuse Outer Blue Glow Flare on Hover */}
             <div className="absolute -inset-2 bg-gradient-to-tr from-sky-500/30 via-cyan-400/20 to-blue-600/30 rounded-[2.5rem] blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none -z-10" />
 
             {/* Doppelrand Outer Shell with Blue Neon Border Glow */}
-            <div className="doppelrand-shell !p-2.5 !rounded-3xl w-full h-full shadow-2xl overflow-hidden group-hover:border-sky-400/60 group-hover:shadow-[0_0_35px_rgba(56,189,248,0.3),0_0_70px_rgba(14,165,233,0.15)] transition-all duration-500 relative">
+            <div className="doppelrand-shell !p-2 sm:!p-2.5 !rounded-3xl w-full h-full shadow-2xl overflow-hidden group-hover:border-sky-400/60 group-hover:shadow-[0_0_35px_rgba(56,189,248,0.3),0_0_70px_rgba(14,165,233,0.15)] transition-all duration-500 relative">
               {/* Dynamic Blue Border Edge Gradient Accent */}
               <div className="absolute inset-0 bg-gradient-to-tr from-sky-500/0 via-sky-400/0 to-cyan-300/0 group-hover:from-sky-500/25 group-hover:via-sky-400/15 group-hover:to-cyan-300/25 opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none z-0" />
 
@@ -201,7 +201,7 @@ export default function Hero() {
                     alt="Asarudeen S"
                     fill
                     priority
-                    sizes="(max-width: 640px) 280px, (max-width: 1024px) 360px, 400px"
+                    sizes="(max-width: 640px) 270px, (max-width: 1024px) 340px, 400px"
                     className="object-cover object-center contrast-[1.05] brightness-[0.99] saturate-[1.06] group-hover:scale-[1.04] transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)]"
                   />
 
@@ -220,25 +220,25 @@ export default function Hero() {
         </div>
 
         {/* Right Content */}
-        <div className="w-full lg:w-[60%] pt-4 lg:pt-0 z-20">
+        <div className="w-full lg:w-[60%] pt-2 sm:pt-4 lg:pt-0 z-20 text-center lg:text-left flex flex-col items-center lg:items-start">
           {/* Doppelrand Top Status Pill with Continuous Typing Loop */}
-          <div className="hero-pill mb-6 inline-flex opacity-0">
+          <div className="hero-pill mb-4 sm:mb-6 inline-flex opacity-0">
             <div className="doppelrand-shell !p-1 !rounded-full">
-              <div className="doppelrand-core px-5 sm:px-6 py-2.5 sm:py-3 flex items-center gap-2.5 font-mono text-zinc-300">
+              <div className="doppelrand-core px-4 sm:px-6 py-2 sm:py-2.5 flex items-center gap-2 font-mono text-zinc-300">
                 <span className="relative flex h-2.5 w-2.5 shrink-0 mr-0.5">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-sky-500"></span>
                 </span>
-                <span className="text-sky-400 font-bold tracking-wider font-mono flex items-center text-sm sm:text-base md:text-lg whitespace-nowrap">
+                <span className="text-sky-400 font-bold tracking-wider font-mono flex items-center text-xs sm:text-base md:text-lg whitespace-nowrap">
                   <span>{typedText || "\u00A0"}</span>
-                  <span className="inline-block w-[2.5px] h-4 sm:h-5 bg-sky-400 ml-1.5 animate-[pulse_0.8s_ease-in-out_infinite]" />
+                  <span className="inline-block w-[2px] sm:w-[2.5px] h-3.5 sm:h-5 bg-sky-400 ml-1.5 animate-[pulse_0.8s_ease-in-out_infinite]" />
                 </span>
               </div>
             </div>
           </div>
 
           {/* Core Headline */}
-          <h1 className="hero-headline text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight mb-6 text-white leading-[1.1] max-w-2xl opacity-0">
+          <h1 className="hero-headline text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight mb-4 sm:mb-6 text-white leading-[1.15] sm:leading-[1.1] max-w-2xl opacity-0">
             Full-stack developer building{" "}
             <span className="bg-gradient-to-r from-white via-sky-200 to-sky-400 bg-clip-text text-transparent">
               scalable web systems.
@@ -246,21 +246,21 @@ export default function Hero() {
           </h1>
 
           {/* Subtitle */}
-          <p className="hero-subtitle text-base md:text-lg text-zinc-400 mb-9 max-w-xl font-normal leading-relaxed opacity-0">
+          <p className="hero-subtitle text-sm sm:text-base md:text-lg text-zinc-400 mb-6 sm:mb-9 max-w-xl font-normal leading-relaxed opacity-0">
             {portfolioData.personal.heroSubtitle}
           </p>
 
           {/* Action CTAs */}
-          <div className="hero-ctas flex flex-wrap items-center gap-4 opacity-0">
+          <div className="hero-ctas flex flex-wrap items-center justify-center lg:justify-start gap-3 sm:gap-4 opacity-0 w-full">
             <MagneticButton
               as="a"
               href="#projects"
               strength={0.25}
-              className="group relative inline-flex items-center bg-white hover:bg-zinc-100 text-zinc-950 pl-6 pr-2 py-2 rounded-full font-bold text-sm shadow-xl transition-all cursor-pointer active:scale-[0.98]"
+              className="group relative inline-flex items-center justify-center bg-white hover:bg-zinc-100 text-zinc-950 pl-5 sm:pl-6 pr-2 py-2 rounded-full font-bold text-xs sm:text-sm shadow-xl transition-all cursor-pointer active:scale-[0.98]"
             >
               <span>View Projects</span>
-              <span className="w-8 h-8 rounded-full bg-zinc-950 text-white flex items-center justify-center ml-3 group-hover:scale-105 group-hover:rotate-45 transition-transform duration-300">
-                <ArrowUpRight size={15} />
+              <span className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-zinc-950 text-white flex items-center justify-center ml-2.5 sm:ml-3 group-hover:scale-105 group-hover:rotate-45 transition-transform duration-300">
+                <ArrowUpRight size={14} />
               </span>
             </MagneticButton>
 
@@ -268,14 +268,14 @@ export default function Hero() {
               as="button"
               onClick={() => setIsResumeOpen(true)}
               strength={0.25}
-              className="group relative inline-flex items-center overflow-hidden border border-sky-500/30 hover:border-sky-400 bg-white/[0.04] text-white hover:text-zinc-950 pl-6 pr-2 py-2 rounded-full font-bold text-sm shadow-xl transition-all duration-300 cursor-pointer active:scale-[0.98] backdrop-blur-xl"
+              className="group relative inline-flex items-center justify-center overflow-hidden border border-sky-500/30 hover:border-sky-400 bg-white/[0.04] text-white hover:text-zinc-950 pl-5 sm:pl-6 pr-2 py-2 rounded-full font-bold text-xs sm:text-sm shadow-xl transition-all duration-300 cursor-pointer active:scale-[0.98] backdrop-blur-xl"
             >
               {/* Smooth Fill-Up Background Animation */}
               <span className="absolute inset-0 bg-gradient-to-r from-sky-400 to-sky-500 translate-y-full group-hover:translate-y-0 transition-transform duration-350 ease-[cubic-bezier(0.23,1,0.32,1)] rounded-full -z-10" />
 
               <span className="relative z-10 transition-colors duration-300">View Resume</span>
-              <span className="relative z-10 w-8 h-8 rounded-full bg-white/10 group-hover:bg-zinc-950 text-sky-400 group-hover:text-white flex items-center justify-center ml-3 group-hover:scale-105 transition-all duration-300">
-                <FileText size={14} className="transition-colors duration-300" />
+              <span className="relative z-10 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/10 group-hover:bg-zinc-950 text-sky-400 group-hover:text-white flex items-center justify-center ml-2.5 sm:ml-3 group-hover:scale-105 transition-all duration-300">
+                <FileText size={13} className="transition-colors duration-300" />
               </span>
             </MagneticButton>
 
@@ -286,10 +286,10 @@ export default function Hero() {
                 target="_blank"
                 rel="noopener noreferrer"
                 strength={0.35}
-                className="p-3.5 rounded-full bg-white/[0.04] border border-white/10 text-zinc-400 hover:text-white hover:bg-[#24292e] hover:border-white/30 hover:shadow-[0_0_16px_rgba(255,255,255,0.12)] transition-all duration-300 backdrop-blur-2xl cursor-pointer"
+                className="p-3 sm:p-3.5 rounded-full bg-white/[0.04] border border-white/10 text-zinc-400 hover:text-white hover:bg-[#24292e] hover:border-white/30 hover:shadow-[0_0_16px_rgba(255,255,255,0.12)] transition-all duration-300 backdrop-blur-2xl cursor-pointer active:scale-95"
                 aria-label="GitHub Profile"
               >
-                <FaGithub size={18} />
+                <FaGithub size={17} />
               </MagneticButton>
               <MagneticButton
                 as="a"
@@ -297,10 +297,10 @@ export default function Hero() {
                 target="_blank"
                 rel="noopener noreferrer"
                 strength={0.35}
-                className="p-3.5 rounded-full bg-white/[0.04] border border-white/10 text-zinc-400 hover:text-white hover:bg-[#0a66c2] hover:border-[#0a66c2] hover:shadow-[0_0_20px_rgba(10,102,194,0.4)] transition-all duration-300 backdrop-blur-2xl cursor-pointer"
+                className="p-3 sm:p-3.5 rounded-full bg-white/[0.04] border border-white/10 text-zinc-400 hover:text-white hover:bg-[#0a66c2] hover:border-[#0a66c2] hover:shadow-[0_0_20px_rgba(10,102,194,0.4)] transition-all duration-300 backdrop-blur-2xl cursor-pointer active:scale-95"
                 aria-label="LinkedIn Profile"
               >
-                <FaLinkedin size={18} />
+                <FaLinkedin size={17} />
               </MagneticButton>
             </div>
           </div>

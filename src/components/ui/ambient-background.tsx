@@ -29,8 +29,11 @@ export function AmbientBackground() {
 
     window.addEventListener("resize", handleResize);
 
-    // Particle nodes array
-    const particleCount = Math.min(Math.floor(width / 35), 45);
+    // Adaptive particle count for smooth 60fps on mobile
+    const isMobile = width < 640;
+    const particleCount = isMobile ? 16 : Math.min(Math.floor(width / 35), 42);
+    const maxDistance = isMobile ? 85 : 140;
+
     const particles: {
       x: number;
       y: number;
@@ -44,8 +47,8 @@ export function AmbientBackground() {
       particles.push({
         x: Math.random() * width,
         y: Math.random() * height,
-        vx: (Math.random() - 0.5) * 0.35,
-        vy: (Math.random() - 0.5) * 0.35,
+        vx: (Math.random() - 0.5) * 0.3,
+        vy: (Math.random() - 0.5) * 0.3,
         radius: Math.random() * 1.5 + 0.5,
         alpha: Math.random() * 0.4 + 0.1,
       });
@@ -79,11 +82,11 @@ export function AmbientBackground() {
           const dy = p1.y - p2.y;
           const dist = Math.sqrt(dx * dx + dy * dy);
 
-          if (dist < 140) {
+          if (dist < maxDistance) {
             ctx.beginPath();
             ctx.moveTo(p1.x, p1.y);
             ctx.lineTo(p2.x, p2.y);
-            const lineAlpha = (1 - dist / 140) * 0.08;
+            const lineAlpha = (1 - dist / maxDistance) * 0.08;
             ctx.strokeStyle = `rgba(56, 189, 248, ${lineAlpha})`;
             ctx.lineWidth = 0.6;
             ctx.stroke();

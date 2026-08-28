@@ -47,25 +47,25 @@ export default function Navbar() {
   }, []);
 
   return (
-    <header className="fixed top-5 left-0 right-0 z-50 flex justify-center px-4">
+    <header className="fixed top-3 sm:top-5 left-0 right-0 z-50 flex justify-center px-3 sm:px-4">
       <nav
         className={cn(
-          "w-full max-w-4xl rounded-full px-5 py-2.5 flex items-center justify-between transition-all duration-500 shadow-2xl shadow-black/40 border",
+          "w-full max-w-4xl rounded-full px-4 sm:px-5 py-2 sm:py-2.5 flex items-center justify-between transition-all duration-500 shadow-2xl shadow-black/40 border",
           isScrolled 
-            ? "bg-zinc-950/40 backdrop-blur-3xl backdrop-saturate-[150%] border-white/[0.08] py-2" 
-            : "bg-zinc-900/30 backdrop-blur-md border-white/5"
+            ? "bg-zinc-950/60 backdrop-blur-3xl backdrop-saturate-[150%] border-white/[0.08] py-1.5 sm:py-2" 
+            : "bg-zinc-900/40 backdrop-blur-md border-white/5"
         )}
       >
         {/* Brand Name Typography */}
         <Link
           href="#"
-          className="text-sm font-black tracking-tight text-white hover:text-sky-400 transition-colors flex items-center pr-4 border-r border-white/10 group"
+          className="text-xs sm:text-sm font-black tracking-tight text-white hover:text-sky-400 transition-colors flex items-center pr-3 sm:pr-4 border-r border-white/10 group"
           onClick={() => setIsMobileMenuOpen(false)}
         >
           <span className="hidden sm:inline font-sans text-white group-hover:text-sky-400 transition-colors tracking-tight">
             {portfolioData.personal.name}
           </span>
-          <span className="sm:hidden font-mono text-sky-400 font-bold tracking-wider">
+          <span className="sm:hidden font-mono text-sky-400 font-bold tracking-wider text-xs">
             AS
           </span>
         </Link>
@@ -97,7 +97,7 @@ export default function Navbar() {
         </div>
 
         {/* Action Button */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 sm:gap-3">
           <Link
             href={portfolioData.personal.github}
             target="_blank"
@@ -110,11 +110,11 @@ export default function Navbar() {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden text-zinc-300 p-1.5 rounded-full hover:bg-zinc-800"
+            className="md:hidden text-zinc-300 p-2 rounded-full hover:bg-zinc-800 active:bg-zinc-700 transition-colors"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
           >
-            {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+            {isMobileMenuOpen ? <X size={18} /> : <Menu size={18} />}
           </button>
         </div>
       </nav>
@@ -127,27 +127,27 @@ export default function Navbar() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: -10 }}
             transition={{ type: "spring", stiffness: 300, damping: 25 }}
-            className="absolute top-full left-4 right-4 mt-3 max-w-sm mx-auto glass-panel rounded-2xl p-4 border border-zinc-800 shadow-2xl flex flex-col gap-2 md:hidden z-50"
+            className="absolute top-full left-3 right-3 mt-2.5 max-w-sm mx-auto bg-zinc-950/95 backdrop-blur-2xl rounded-2xl p-3.5 border border-zinc-800/80 shadow-[0_20px_50px_rgba(0,0,0,0.8)] flex flex-col gap-1.5 md:hidden z-50"
           >
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 href={link.href}
-                className="px-4 py-2.5 rounded-xl text-sm font-medium text-zinc-300 hover:text-white hover:bg-zinc-800/60 transition-colors flex items-center justify-between"
+                className="px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-medium text-zinc-300 hover:text-white hover:bg-zinc-800/70 active:bg-zinc-800 transition-colors flex items-center justify-between"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {link.name}
-                <Sparkles size={14} className="text-zinc-600" />
+                <Sparkles size={13} className="text-zinc-600" />
               </Link>
             ))}
             <Link
               href={portfolioData.personal.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-2 px-4 py-2.5 rounded-xl bg-[#24292e] hover:bg-[#1b1f23] text-white font-semibold text-sm flex items-center justify-center gap-2 border border-white/10"
+              className="mt-1 px-3.5 py-2.5 rounded-xl bg-[#24292e] hover:bg-[#1b1f23] text-white font-semibold text-xs sm:text-sm flex items-center justify-center gap-2 border border-white/10 active:scale-[0.98] transition-transform"
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              <FaGithub size={16} />
+              <FaGithub size={15} />
               GitHub Profile
             </Link>
           </motion.div>

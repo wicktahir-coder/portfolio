@@ -67,7 +67,7 @@ export function ProjectCard({
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-80px" }}
         transition={{ duration: 0.7, delay: index * 0.1, ease: [0.21, 0.47, 0.32, 0.98] }}
-        className="group relative flex flex-col lg:flex-row gap-8 lg:gap-12 items-center w-full py-8"
+        className="group relative flex flex-col lg:flex-row gap-6 sm:gap-8 lg:gap-12 items-center w-full py-4 sm:py-8"
       >
         {/* Doppelrand Browser Chassis Mockup */}
         <div
@@ -77,21 +77,21 @@ export function ProjectCard({
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
-          <div className="doppelrand-shell h-full !p-1.5 shadow-2xl transition-transform duration-500 hover:scale-[1.01]">
+          <div className="doppelrand-shell h-full !p-1 sm:!p-1.5 shadow-2xl transition-transform duration-500 hover:scale-[1.01]">
             <div className="doppelrand-core h-full flex flex-col justify-between overflow-hidden relative bg-[#0a0a0f]">
               {/* Browser Top Window Bar */}
-              <div className="h-10 px-4 bg-black/70 border-b border-white/5 flex items-center justify-between flex-shrink-0 z-20 backdrop-blur-xl">
-                <div className="flex items-center gap-2">
-                  <div className="w-2.5 h-2.5 rounded-full bg-rose-500/80" />
-                  <div className="w-2.5 h-2.5 rounded-full bg-amber-500/80" />
-                  <div className="w-2.5 h-2.5 rounded-full bg-emerald-500/80" />
+              <div className="h-9 sm:h-10 px-3 sm:px-4 bg-black/70 border-b border-white/5 flex items-center justify-between flex-shrink-0 z-20 backdrop-blur-xl">
+                <div className="flex items-center gap-1.5 sm:gap-2">
+                  <div className="w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-rose-500/80" />
+                  <div className="w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-amber-500/80" />
+                  <div className="w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-emerald-500/80" />
                 </div>
 
                 <a 
                   href={demo || github || "#"} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="px-3 py-1 rounded-md bg-white/[0.04] border border-white/10 text-[11px] font-mono text-zinc-400 hover:text-sky-400 max-w-[200px] sm:max-w-[260px] truncate text-center transition-colors"
+                  className="px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-md bg-white/[0.04] border border-white/10 text-[10px] sm:text-[11px] font-mono text-zinc-400 hover:text-sky-400 max-w-[130px] xs:max-w-[180px] sm:max-w-[260px] truncate text-center transition-colors"
                 >
                   {displayUrl}
                 </a>
@@ -158,25 +158,25 @@ export function ProjectCard({
                   <>
                     <button
                       onClick={handlePrev}
-                      className="absolute left-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/60 hover:bg-black/90 text-white flex items-center justify-center backdrop-blur-md border border-white/10 opacity-0 group-hover/carousel:opacity-100 transition-all duration-200 z-30 hover:scale-110 active:scale-95 shadow-lg"
+                      className="absolute left-2 sm:left-3 top-1/2 -translate-y-1/2 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-black/75 hover:bg-black/90 text-white flex items-center justify-center backdrop-blur-md border border-white/15 opacity-80 sm:opacity-0 sm:group-hover/carousel:opacity-100 transition-all duration-200 z-30 active:scale-95 shadow-lg"
                       aria-label="Previous image"
                     >
-                      <ChevronLeft size={16} />
+                      <ChevronLeft size={15} />
                     </button>
                     <button
                       onClick={handleNext}
-                      className="absolute right-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/60 hover:bg-black/90 text-white flex items-center justify-center backdrop-blur-md border border-white/10 opacity-0 group-hover/carousel:opacity-100 transition-all duration-200 z-30 hover:scale-110 active:scale-95 shadow-lg"
+                      className="absolute right-2 sm:right-3 top-1/2 -translate-y-1/2 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-black/75 hover:bg-black/90 text-white flex items-center justify-center backdrop-blur-md border border-white/15 opacity-80 sm:opacity-0 sm:group-hover/carousel:opacity-100 transition-all duration-200 z-30 active:scale-95 shadow-lg"
                       aria-label="Next image"
                     >
-                      <ChevronRight size={16} />
+                      <ChevronRight size={15} />
                     </button>
                   </>
                 )}
 
                 {/* Segmented Glass Indicator Pill Bar */}
                 {projectImages.length > 1 && (
-                  <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-2 z-30 bg-black/75 px-3 py-1.5 rounded-full backdrop-blur-xl border border-white/10 shadow-2xl">
-                    <span className="text-[9.5px] font-mono text-zinc-400 font-bold mr-1 select-none">
+                  <div className="absolute bottom-2.5 sm:bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-1.5 sm:gap-2 z-30 bg-black/80 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full backdrop-blur-xl border border-white/10 shadow-2xl">
+                    <span className="text-[9px] sm:text-[9.5px] font-mono text-zinc-400 font-bold mr-0.5 select-none">
                       {activeImageIndex + 1}/{projectImages.length}
                     </span>
                     {projectImages.map((_, i) => (
@@ -188,8 +188,8 @@ export function ProjectCard({
                         }}
                         className={`group/dot relative h-1.5 rounded-full transition-all duration-300 ${
                           i === activeImageIndex
-                            ? "w-6 bg-gradient-to-r from-sky-400 to-indigo-400 shadow-sm shadow-sky-400/50"
-                            : "w-2 bg-white/20 hover:bg-white/40"
+                            ? "w-5 sm:w-6 bg-gradient-to-r from-sky-400 to-indigo-400 shadow-sm shadow-sky-400/50"
+                            : "w-1.5 sm:w-2 bg-white/20 hover:bg-white/40"
                         }`}
                         aria-label={`Slide ${i + 1}`}
                       />
@@ -199,11 +199,11 @@ export function ProjectCard({
               </div>
 
               {/* Bottom Tech Bar */}
-              <div className="flex items-center gap-1.5 flex-wrap px-4 py-2.5 bg-black/60 border-t border-white/5">
+              <div className="flex items-center gap-1 sm:gap-1.5 flex-wrap px-3 sm:px-4 py-2 sm:py-2.5 bg-black/60 border-t border-white/5">
                 {techStack.slice(0, 5).map((tech) => (
                   <span
                     key={tech}
-                    className="text-[10px] font-mono font-medium px-2 py-0.5 bg-white/[0.03] text-zinc-300 rounded border border-white/5"
+                    className="text-[9px] sm:text-[10px] font-mono font-medium px-1.5 sm:px-2 py-0.5 bg-white/[0.03] text-zinc-300 rounded border border-white/5"
                   >
                     {tech}
                   </span>
@@ -215,35 +215,35 @@ export function ProjectCard({
 
         {/* Content Side - Editorial & Impact-focused */}
         <div className={`w-full lg:w-[52%] flex flex-col ${isEven ? "lg:order-2" : "lg:order-1"}`}>
-          <div className="flex items-center gap-2 mb-2">
-            <span className="text-sky-400 text-xs font-mono font-bold tracking-widest uppercase">
+          <div className="flex items-center gap-2 mb-1.5 sm:mb-2">
+            <span className="text-sky-400 text-[11px] sm:text-xs font-mono font-bold tracking-widest uppercase">
               {subtitle}
             </span>
           </div>
 
-          <h3 className="text-3xl sm:text-4xl font-black text-white mb-4 group-hover:text-sky-400 transition-colors leading-tight">
+          <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white mb-3 sm:mb-4 group-hover:text-sky-400 transition-colors leading-tight">
             {title}
           </h3>
 
           {/* Clean Editorial Description */}
-          <div className="mb-6 max-w-lg">
-            <p className="text-zinc-400 text-sm sm:text-base leading-[1.7] font-normal">
+          <div className="mb-4 sm:mb-6 max-w-lg">
+            <p className="text-zinc-400 text-xs sm:text-sm md:text-base leading-[1.65] font-normal">
               {description}
             </p>
           </div>
 
           {/* Structured Field: Real Outcome */}
-          <div className="mb-6 pb-5 border-b border-white/5 flex flex-wrap items-center gap-3">
-            <span className="text-xs font-mono font-bold text-zinc-500 uppercase tracking-wider">
+          <div className="mb-5 sm:mb-6 pb-4 sm:pb-5 border-b border-white/5 flex flex-wrap items-center gap-2 sm:gap-3">
+            <span className="text-[11px] sm:text-xs font-mono font-bold text-zinc-500 uppercase tracking-wider">
               Outcome:
             </span>
-            <span className="text-sm font-medium text-emerald-400">
+            <span className="text-xs sm:text-sm font-medium text-emerald-400">
               {outcome}
             </span>
           </div>
 
           {/* Action Buttons with Magnetic Springs */}
-          <div className="flex flex-wrap items-center gap-3 mt-auto">
+          <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 mt-auto">
             {github && (
               <MagneticButton
                 as="a"
@@ -251,9 +251,9 @@ export function ProjectCard({
                 target="_blank"
                 rel="noopener noreferrer"
                 strength={0.2}
-                className="flex items-center gap-2.5 bg-white/[0.04] hover:bg-[#24292e] text-white px-5 py-2.5 rounded-full border border-white/10 hover:border-white/30 text-xs font-bold transition-all active:scale-[0.98] backdrop-blur-md cursor-pointer hover:shadow-[0_0_15px_rgba(255,255,255,0.1)]"
+                className="flex items-center gap-2 bg-white/[0.04] hover:bg-[#24292e] text-white px-4 sm:px-5 py-2 sm:py-2.5 rounded-full border border-white/10 hover:border-white/30 text-xs font-bold transition-all active:scale-[0.98] backdrop-blur-md cursor-pointer hover:shadow-[0_0_15px_rgba(255,255,255,0.1)]"
               >
-                <FaGithub size={15} />
+                <FaGithub size={14} />
                 <span>Source Code</span>
               </MagneticButton>
             )}
@@ -264,11 +264,11 @@ export function ProjectCard({
                 target="_blank"
                 rel="noopener noreferrer"
                 strength={0.2}
-                className="group inline-flex items-center bg-sky-500 hover:bg-sky-400 text-zinc-950 pl-5 pr-2 py-1.5 rounded-full text-xs font-bold transition-all active:scale-[0.98] shadow-lg shadow-sky-500/20 cursor-pointer"
+                className="group inline-flex items-center bg-sky-500 hover:bg-sky-400 text-zinc-950 pl-4 sm:pl-5 pr-2 py-1.5 rounded-full text-xs font-bold transition-all active:scale-[0.98] shadow-lg shadow-sky-500/20 cursor-pointer"
               >
                 <span>Live Demo</span>
-                <span className="w-6 h-6 rounded-full bg-zinc-950 text-white flex items-center justify-center ml-2.5 group-hover:scale-105 group-hover:rotate-45 transition-transform duration-300">
-                  <ExternalLink size={12} />
+                <span className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-zinc-950 text-white flex items-center justify-center ml-2 sm:ml-2.5 group-hover:scale-105 group-hover:rotate-45 transition-transform duration-300">
+                  <ExternalLink size={11} />
                 </span>
               </MagneticButton>
             )}

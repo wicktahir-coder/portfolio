@@ -60,35 +60,35 @@ export default function Projects() {
     <section
       id="projects"
       ref={sectionRef}
-      className="py-32 relative bg-[#050507] overflow-hidden"
+      className="py-16 sm:py-24 lg:py-32 relative bg-[#050507] overflow-hidden"
     >
       {/* Ambient Radial Spotlight */}
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[50rem] h-[30rem] bg-sky-500/10 rounded-full blur-[160px] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto w-full px-6 md:px-12 relative z-10">
+      <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 md:px-12 relative z-10">
         {/* Section Header */}
-        <div className="projects-header mb-20 max-w-3xl opacity-0">
-          <div className="doppelrand-shell !p-1 !rounded-full inline-flex mb-6">
+        <div className="projects-header mb-12 sm:mb-20 max-w-3xl opacity-0">
+          <div className="doppelrand-shell !p-1 !rounded-full inline-flex mb-4 sm:mb-6">
             <div className="doppelrand-core px-3.5 py-1.5 flex items-center gap-2 text-xs font-mono font-semibold text-sky-400">
               <Layers size={13} className="text-sky-400" />
               Featured Projects
             </div>
           </div>
 
-          <h2 className="text-4xl md:text-6xl font-black text-white tracking-tight mb-6 leading-[1.1]">
+          <h2 className="text-3xl sm:text-4xl md:text-6xl font-black text-white tracking-tight mb-4 sm:mb-6 leading-[1.15] sm:leading-[1.1]">
             Web applications & <br />
             <span className="bg-gradient-to-r from-white via-sky-300 to-indigo-400 bg-clip-text text-transparent">
               full-stack builds.
             </span>
           </h2>
 
-          <p className="text-base md:text-lg text-zinc-400 leading-relaxed font-normal">
+          <p className="text-sm sm:text-base md:text-lg text-zinc-400 leading-relaxed font-normal">
             Projects built with React, Node.js, Express, MongoDB, Socket.io, and Redis.
           </p>
         </div>
 
         {/* Project Cards Stack */}
-        <div className="flex flex-col gap-12">
+        <div className="flex flex-col gap-8 sm:gap-12">
           {portfolioData.projects.map((project, index) => (
             <div key={project.title} className="project-item opacity-0">
               <ProjectCard
